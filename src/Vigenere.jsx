@@ -8,7 +8,7 @@ export default function Vigenere(params) {
 
     const [plainText2, setPlainText2] = useState('');
     const [keyword2, setKeyword2] = useState('');
-    const [cipher, setCipher] = useState('');
+    const [cipher2, setCipher2] = useState('');
 
 
     //Enkripsi
@@ -49,6 +49,40 @@ export default function Vigenere(params) {
         encryptText();
     };
 
+    const decryptText = () => {
+        const cleanEncryptedText = cipher2.toUpperCase().replace(/[^A-Z]/g, '');
+        const cleanKeyword = keyword2.toUpperCase().replace(/[^A-Z]/g, '');
+    
+        let decrypted = '';
+        const keywordLength = cleanKeyword.length;
+        let keywordIndex = 0;
+    
+        for (let i = 0; i < cleanEncryptedText.length; i++) {
+            const encryptedChar = cleanEncryptedText.charAt(i);
+            const keyChar = cleanKeyword.charAt(keywordIndex);
+    
+            const encryptedCharCode = encryptedChar.charCodeAt(0) - 65;
+            const keyCharCode = keyChar.charCodeAt(0) - 65;
+    
+            let decryptedCharCode = (encryptedCharCode - keyCharCode + 26) % 26 + 65;
+            const decryptedChar = String.fromCharCode(decryptedCharCode);
+    
+            decrypted += decryptedChar;
+    
+            keywordIndex = (keywordIndex + 1) % keywordLength;
+        }
+    
+        setPlainText2(decrypted)
+    };
+
+    const handleKeyword2Change = (e) => {
+        setKeyword2(e.target.value);
+        decryptText();
+    };
+    const handleCipher2Change = (e) => {
+        setCipher2(e.target.value);
+        decryptText();
+    };
     return (
         <>
             <Navigation />
@@ -71,6 +105,23 @@ export default function Vigenere(params) {
                         <div class="mb-5">
                             <label for="cipher" class="block mb-2 text-sm text-green-900 dark:text-white">Cipher Text</label>
                             <input type="text" id="cipher" value={encryptedText} class="bg-gray-300 border border-gray-300 text-black font-bold text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled />
+                        </div>
+                    </form>
+                </div>
+                <div className="max-w-sm text-left">
+                    <p className="font-gray-900 text-xl font-bold my-3">** Decrypt</p>
+                    <form class="max-w-sm mx-start text-left">
+                        <div class="mb-5">
+                            <label for="cipher" class="block mb-2 text-sm text-green-900 dark:text-white">Plaintext</label>
+                            <input type="text" id="cipher" value={plainText2} class="bg-gray-300 border border-gray-300 text-black font-bold text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled />
+                        </div>
+                        <div class="mb-5">
+                            <label for="keyword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">keyword</label>
+                            <input type="text" id="keyword" value={keyword2} onChange={handleKeyword2Change} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example: abcde" required />
+                        </div>
+                        <div class="mb-5">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cipher</label>
+                            <input type="text" value={cipher2} onChange={handleCipher2Change}  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example: abcde" required />
                         </div>
                     </form>
                 </div>
