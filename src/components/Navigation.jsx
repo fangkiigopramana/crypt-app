@@ -13,19 +13,7 @@ export default function Navigation(params) {
                         <Link to="/" aria-current="page" class="inline-block p-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Home</Link>
                     </li>
                     <li class="me-2">
-                        <Link to="/caesar" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Caesar</Link>
-                    </li>
-                    <li class="me-2">
                         <Link to="/vigenere" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Vigenere</Link>
-                    </li>
-                    <li class="me-2">
-                        <Link to="/affine" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Affine</Link>
-                    </li>
-                    <li class="me-2">
-                        <Link to="/playfair" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Playfair</Link>
-                    </li>
-                    <li class="me-2">
-                        <Link to="/hill" class="inline-block p-2 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Hill</Link>
                     </li>
                 </ul>
             </div>
